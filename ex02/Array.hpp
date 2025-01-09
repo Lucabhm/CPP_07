@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucabohn <lucabohn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 19:46:01 by lucabohn          #+#    #+#             */
-/*   Updated: 2025/01/09 20:35:09 by lucabohn         ###   ########.fr       */
+/*   Created: 2025/01/09 21:10:02 by lucabohn          #+#    #+#             */
+/*   Updated: 2025/01/09 22:51:08 by lucabohn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-# define ITER_HPP
-
-template <typename T, typename F>
-void	iter(T *addr, int size, F func)
-{
-	for (int i = 0; i < size; i++)
-	{
-		func(addr[i]);
-	}
-}
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
 template <typename T>
-void	test(T &value)
+class Array
 {
-	std::cout << value << " ";
-}
+	private:
+		T				*arr;
+		unsigned int	n;
+	public:
+		Array(void);
+		Array(unsigned int n);
+		Array(const Array &cpy);
+		Array	&operator= (const Array &cpy);
+		T		&operator[] (unsigned int i);
+		~Array(void);
+		unsigned int	size(void) const;
+		class OutOfBound : public std::exception
+		{
+			public:
+				const char	*what() const throw();
+		};
+};
+
+# include "Array.tpp"
 
 #endif
