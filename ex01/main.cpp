@@ -5,27 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucabohn <lucabohn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 18:46:01 by lbohm             #+#    #+#             */
-/*   Updated: 2025/01/09 19:43:11 by lucabohn         ###   ########.fr       */
+/*   Created: 2025/01/09 19:47:37 by lucabohn          #+#    #+#             */
+/*   Updated: 2025/01/09 20:18:48 by lucabohn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
 #include <iostream>
+#include "iter.hpp"
 
-int main( void )
+void	power(int &nbr);
+
+int	main(void)
 {
-	int a = 2;
-	int b = 3;
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-	return 0;
+	int	arr[] = {1, 2, 3, 4, 5};
+
+	for (int i = 0; i < 5; i++)
+		std::cout << arr[i] << " ";
+	std::cout << std::endl;
+	iter(arr, 5, power);
+	for (int i = 0; i < 5; i++)
+		std::cout << arr[i] << " ";
+	std::cout << std::endl;
+	return (0);
+}
+
+void	power(int &nbr)
+{
+	nbr *= nbr;
 }
