@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucabohn <lucabohn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbohm <lbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 21:16:41 by lbohm             #+#    #+#             */
-/*   Updated: 2025/01/09 23:01:46 by lucabohn         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:45:15 by lbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 template <typename T>
 Array<T>::Array(void)
 {
-	this->arr = nullptr;
+	this->arr = new T[0]();
 	this->n = 0;
 }
 
@@ -52,7 +52,7 @@ Array<T>	&Array<T>::operator= (const Array &cpy)
 template <typename T>
 T	&Array<T>::operator[] (unsigned int i)
 {
-	if (i > this->n)
+	if (i >= this->n)
 		throw OutOfBound();
 	return (this->arr[i]);
 }

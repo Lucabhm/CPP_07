@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucabohn <lucabohn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbohm <lbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 19:46:01 by lucabohn          #+#    #+#             */
-/*   Updated: 2025/01/09 20:35:09 by lucabohn         ###   ########.fr       */
+/*   Created: 2025/01/09 19:46:01 by lbohm             #+#    #+#             */
+/*   Updated: 2025/02/10 10:31:25 by lbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 template <typename T, typename F>
 void	iter(T *addr, int size, F func)
 {
-	for (int i = 0; i < size; i++)
+	if (addr != nullptr)
 	{
-		func(addr[i]);
+		for (int i = 0; i < size; i++)
+			func(addr[i]);
 	}
 }
 

@@ -3,43 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucabohn <lucabohn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbohm <lbohm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 21:09:33 by lbohm             #+#    #+#             */
-/*   Updated: 2025/01/09 23:02:24 by lucabohn         ###   ########.fr       */
+/*   Created: 2025/02/10 10:48:40 by lbohm             #+#    #+#             */
+/*   Updated: 2025/02/10 10:48:42 by lbohm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Array.hpp"
 
-int	main(void)
+#define MAX_VAL 750
+int main(int, char**)
 {
-	Array<int>	a(5);
-	Array<int>	b(a);
+	Array<int>	numbers(MAX_VAL);
+	int			*mirror = new int[MAX_VAL];
 
-	std::cout << "size of a = " << a.size() << std::endl;
-	std::cout << "first" << std::endl;
-	for (int i = 0; i < a.size(); i++)
-		std::cout << a[i] << std::endl;
-	for (int i = 0; i < a.size(); i++)
-		a[i] = i;
-	std::cout << "second" << std::endl;
-	for (int i = 0; i < a.size(); i++)
-		std::cout << a[i] << std::endl;
+	srand(time(NULL));
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		const int	value = rand();
+		numbers[i] = value;
+		mirror[i] = value;
+	}
+	{
+		Array<int> tmp = numbers;
+		Array<int> test(tmp);
+	}
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		if (mirror[i] != numbers[i])
+		{
+			std::cerr << "didn't save the same value!!" << std::endl;
+			return (1);
+		}
+	}
 	try
 	{
-		a[10] = 11;
+		numbers[-2] = 0;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "-2: " << e.what() << '\n';
 	}
-	std::cout << "third" << std::endl;
-	for (int i = 0; i < a.size(); i++)
-		std::cout << a[i] << std::endl;
-	std::cout << "print b" << std::endl;
-	for (int i = 0; i < a.size(); i++)
-		std::cout << b[i] << std::endl;
+	try
+	{
+		numbers[MAX_VAL] = 0;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "index: " << e.what() << '\n';
+	}
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		numbers[i] = rand();
+	}
+	delete [] mirror;
 	return (0);
 }
